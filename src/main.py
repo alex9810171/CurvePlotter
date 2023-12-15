@@ -33,8 +33,9 @@ def main(args):
         data_y = df[args.y_axis]
         
         x, y = get_sigmoid_curve(data_x, data_y, args.x_extend)
-        #plt.plot(data_x, data_y, 'o', label='data')
+        
         name = os.path.splitext(os.path.basename(file))[0]
+        #plt.plot(data_x, data_y, 'o', label=name+'_data')
         plt.plot(x, y, label=name)
         
         if max(x) > max_x: max_x = max(x)
