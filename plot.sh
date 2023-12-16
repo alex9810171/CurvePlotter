@@ -3,7 +3,7 @@ python3 src/main.py \
 --title R23_Perf/Power_Curve \
 --x_axis r23_package_power \
 --y_axis r23_point \
---x_lower_bound 10 \
+--x_lower_bound 9 \
 --x_axis_spacing 10 \
 --y_axis_spacing 2000 \
 --output_dir result
