@@ -1,5 +1,6 @@
 python3 src/main.py \
 --data_path data/compare \
+--title R23_Perf/Power_Curve \
 --x_axis r23_package_power \
 --y_axis r23_point \
 --x_lower_bound 10 \
