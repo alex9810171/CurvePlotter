@@ -13,7 +13,7 @@ def get_args_parser(add_help=True):
     parser.add_argument('--data_path', default='./data', type=str, help='path of data')
     parser.add_argument('--x_axis', default='', type=str, help='data of x-axis')
     parser.add_argument('--y_axis', default='', type=str, help='data of y-axis')
-    parser.add_argument('--x_extend', default=5, type=int, help='draw lower pp curve')
+    parser.add_argument('--x_lower_bound', default=5, type=int, help='draw lower pp curve')
     parser.add_argument('--x_axis_spacing', default=10, type=int, help='space of x-axis')
     parser.add_argument('--y_axis_spacing', default=2000, type=int, help='space of y-axis')
     parser.add_argument('--output_dir', default='./result', type=str, help='path to save outputs')
@@ -32,7 +32,7 @@ def main(args):
         data_x = df[args.x_axis]
         data_y = df[args.y_axis]
         
-        x, y = get_sigmoid_curve(data_x, data_y, args.x_extend)
+        x, y = get_sigmoid_curve(data_x, data_y, args.x_lower_bound)
         
         name = os.path.splitext(os.path.basename(file))[0]
         #plt.plot(data_x, data_y, 'o', label=name+'_data')
