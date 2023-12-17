@@ -8,6 +8,11 @@ from datetime import datetime
 
 from plotter import get_sigmoid_curve, get_log_curve
 
+apple_color = ['gray', 'darkgray', 'lightgray', 'slategray']
+intel_color = ['dodgerblue', 'deepskyblue', 'cornflowerblue', 'blue', 'darkblue', 'royalblue']
+amd_color = ['red', 'darkred', 'tomato']
+qual_color = ['green', 'darkgreen', 'lightgreen']
+
 def get_args_parser(add_help=True):
     parser = argparse.ArgumentParser(description='Curve Plotter', add_help=add_help)
     parser.add_argument('--data_path', default='./data', type=str, help='path of data')
@@ -25,6 +30,10 @@ def get_args_parser(add_help=True):
 def main(args):
     max_x = 1
     max_y = 1
+    apple_color_count = 0
+    intel_color_count = 0
+    amd_color_count = 0
+    qual_color_count = 0
     
     plt.figure(figsize=(10.8, 5.4))
     plt.style.use('seaborn-v0_8-whitegrid')
@@ -35,22 +44,38 @@ def main(args):
     file_path = os.path.join(args.data_path, "*.csv")
     for file in glob.glob(file_path):
         df = pd.read_csv(file)
-        data_x = df[args.x_axis]
-        data_y = df[args.y_axis]
+        x_y = pd.DataFrame(df, columns=[args.x_axis, args.y_axis])
+        x_y = x_y.dropna(axis=0, how='any')
+        data_x = x_y[args.x_axis]
+        data_y = x_y[args.y_axis]
 
         if len(data_x) > 3 and (max(data_x)-min(data_x)) > (2/3)*max(data_x):
             x, y = get_sigmoid_curve(data_x, data_y, args.x_lower_bound)
-        else:
+        elif len(data_x) == 3:
             x, y = get_log_curve(data_x, data_y, args.x_lower_bound)
             
         name = os.path.splitext(os.path.basename(file))[0]
-        if args.display_curve:
-            plt.plot(x, y, label=name)
-        if args.display_dot:
-            plt.plot(data_x, data_y, 'o', label=name+'_data')
+        specific_color = None
+        if 'Apple' in file:
+            specific_color = apple_color[apple_color_count % len(apple_color)]
+            apple_color_count += 1
+        elif 'Intel' in file:
+            specific_color = intel_color[intel_color_count % len(intel_color)]
+            intel_color_count += 1
+        elif 'AMD' in file:
+            specific_color = amd_color[amd_color_count % len(amd_color)]
+            amd_color_count += 1
+        elif 'Qualcomm' in file:
+            specific_color = qual_color[qual_color_count % len(qual_color)]
+            qual_color_count += 1
         
-        if max(x) > max_x: max_x = max(x)
-        if max(y) > max_y: max_y = max(y)
+        if args.display_curve and len(data_x) >= 3:
+            plt.plot(x, y, label=name, color=specific_color)
+        if args.display_dot or len(data_x) < 3:
+            plt.plot(data_x, data_y, 'o', label=name, color=specific_color)
+        
+        if max(data_x) > max_x: max_x = max(data_x)
+        if max(data_y) > max_y: max_y = max(data_y)
 
     plt.xlim(0, max_x*1.1)
     plt.ylim(0, max_y*1.1)

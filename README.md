@@ -3,6 +3,7 @@
 sh plot.sh
 ```
 - You can edit `plot.sh` to fit your usage.
+- we use folder name to give color
 
 ## Algorithm
 - Use sigmoid function when over 3 points.
