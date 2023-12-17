@@ -42,7 +42,9 @@ def main(args):
     plt.ylabel(args.y_axis, fontsize=16)
     
     file_path = os.path.join(args.data_path, "*.csv")
-    for file in glob.glob(file_path):
+    file_list = glob.glob(file_path)
+    file_list.sort()
+    for file in file_list:
         df = pd.read_csv(file)
         x_y = pd.DataFrame(df, columns=[args.x_axis, args.y_axis])
         x_y = x_y.dropna(axis=0, how='any')
