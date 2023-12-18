@@ -8,10 +8,10 @@ from datetime import datetime
 
 from plotter import get_sigmoid_curve, get_log_curve
 
-apple_color = ['gray', 'darkgray', 'lightgray', 'slategray']
-intel_color = ['dodgerblue', 'deepskyblue', 'cornflowerblue', 'blue', 'darkblue', 'royalblue']
+apple_color = ['darkgray', 'gray', 'slategray']
+intel_color = ['dodgerblue', 'deepskyblue', 'cornflowerblue']
 amd_color = ['red', 'darkred', 'tomato']
-qual_color = ['green', 'darkgreen', 'lightgreen']
+qual_color = ['blue', 'darkblue', 'royalblue']
 
 def get_args_parser(add_help=True):
     parser = argparse.ArgumentParser(description='Curve Plotter', add_help=add_help)
