@@ -51,9 +51,9 @@ def main(args):
         data_x = x_y[args.x_axis]
         data_y = x_y[args.y_axis]
 
-        if len(data_x) > 3 and (max(data_x)-min(data_x)) > (2/3)*max(data_x):
+        if len(data_x) > 3 and (max(data_x)-min(data_x)) > (1/2)*max(data_x):
             x, y = get_sigmoid_curve(data_x, data_y, args.x_lower_bound)
-        elif len(data_x) == 3:
+        elif len(data_x) > 3:
             x, y = get_log_curve(data_x, data_y, args.x_lower_bound)
             
         name = os.path.splitext(os.path.basename(file))[0]

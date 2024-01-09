@@ -7,7 +7,7 @@ sh plot.sh
 
 ## Algorithm
 - Use sigmoid function when over 3 points.
-- Use log function when under and include 3 points or x_max-x_min not over 2/3*x_max.
+- Use log function when under and include 3 points or x_max-x_min not over 1/2*x_max.
 
 ## Library
 ```
