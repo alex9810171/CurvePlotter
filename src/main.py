@@ -71,9 +71,9 @@ def main(args):
             specific_color = qual_color[qual_color_count % len(qual_color)]
             qual_color_count += 1
         
-        if args.display_curve and len(data_x) >= 3:
+        if args.display_curve and len(data_x) > 3:
             plt.plot(x, y, label=name, color=specific_color)
-        if args.display_dot or len(data_x) < 3:
+        if args.display_dot or len(data_x) <= 3:
             plt.plot(data_x, data_y, 'o', label=name, color=specific_color)
         
         if max(data_x) > max_x: max_x = max(data_x)
