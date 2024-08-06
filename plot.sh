@@ -3,9 +3,9 @@ python3 src/main.py \
 --title R24_Perf/Power_Curve \
 --x_axis package_power \
 --y_axis r24_point \
---x_lower_bound 2 \
---x_axis_spacing 10 \
+--x_lower_bound 5 \
+--x_axis_spacing 5 \
 --y_axis_spacing 200 \
---output_dir result
+--output_dir result \
 # --display_dot \
 # --hide_curve \
