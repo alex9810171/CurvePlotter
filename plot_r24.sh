@@ -6,6 +6,6 @@ python3 src/main.py \
 --x_lower_bound 5 \
 --x_axis_spacing 5 \
 --y_axis_spacing 200 \
---output_dir result \
+--output_dir result
 # --display_dot \
 # --hide_curve \
